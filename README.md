@@ -10,8 +10,8 @@ This repository contains a sorting visualizer, which is a tool that allows you t
 
 ## Installation
 
-- Clone the repo `git clone ...`
-- make sure that yarn is installed
+- Clone the repo
+- Make sure yarn is installed
 - `yarn install` to install all the dependencies
 - `yarn dev` to run the project locally
 
