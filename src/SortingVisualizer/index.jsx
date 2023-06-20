@@ -33,14 +33,14 @@ function SortingVisualizer() {
       const secondBar = document.getElementById(second);
       if (!firstBar || !secondBar) return;
       setTimeout(() => {
-        firstBar.style.backgroundColor = "#9c27b0";
-        secondBar.style.backgroundColor = "#9c27b0";
+        firstBar.style.backgroundColor = "#ab003c";
+        secondBar.style.backgroundColor = "#ab003c";
         const divHeight = firstBar.style.height;
         firstBar.style.height = secondBar.style.height;
         secondBar.style.height = divHeight;
         setTimeout(() => {
-          firstBar.style.backgroundColor = "#4169e1";
-          secondBar.style.backgroundColor = "#4169e1";
+          firstBar.style.backgroundColor = "#2196f3";
+          secondBar.style.backgroundColor = "#2196f3";
         }, DELAY * 2);
       }, DELAY * index * 2);
     });
