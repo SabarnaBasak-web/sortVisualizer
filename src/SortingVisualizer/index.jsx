@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./index.style.css";
-import { bubbleSort } from "../helper/sortFunction";
+import { bubbleSort, insertionSort } from "../helper/sortFunction";
 import Navbar from "./Navbar";
 function SortingVisualizer() {
   const [dataSet, setDataSet] = useState([]);
@@ -27,7 +27,8 @@ function SortingVisualizer() {
     setDataSet([...arr]);
   };
 
-  const animateBars = (selectedIndex) => {
+  const animateBars = (newArr, selectedIndex) => {
+    console.log("newArr", newArr);
     selectedIndex.forEach(([first, second], index) => {
       const firstBar = document.getElementById(first);
       const secondBar = document.getElementById(second);
@@ -48,10 +49,16 @@ function SortingVisualizer() {
 
   const sortHandler = (sortType) => {
     switch (sortType) {
-      case "bubblesort":
-        const { selectedIndex } = bubbleSort(dataSet);
-        animateBars(selectedIndex);
+      case "bubblesort": {
+        const { newArr, selectedIndex } = bubbleSort(dataSet);
+        animateBars(newArr, selectedIndex);
         break;
+      }
+      case "insertionsort": {
+        const { newArr, selectedIndex } = insertionSort(dataSet);
+        animateBars(newArr, selectedIndex);
+        break;
+      }
     }
   };
   return (
