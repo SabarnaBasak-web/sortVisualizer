@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./index.style.css";
-import { bubbleSort, insertionSort, quickSort } from "../helper/sortFunction";
+import { insertionSort } from "../SortFunctions/InsertionSort";
+import { mergeSort } from "../SortFunctions/MergeSort";
+import { bubbleSort } from "../SortFunctions/BubbleSort";
+import { quickSort } from "../SortFunctions/QuickSort";
 import Navbar from "./Navbar";
 function SortingVisualizer() {
   const [dataSet, setDataSet] = useState([]);
@@ -35,7 +38,8 @@ function SortingVisualizer() {
   };
 
   const animateBars = (newArr, selectedIndex) => {
-    console.log("newArr", newArr);
+    console.log("AnimatedBars", newArr, selectedIndex);
+
     selectedIndex.forEach(([first, second], index) => {
       const firstBar = document.getElementById(first);
       const secondBar = document.getElementById(second);
@@ -47,28 +51,54 @@ function SortingVisualizer() {
         firstBar.style.height = secondBar.style.height;
         secondBar.style.height = divHeight;
         setTimeout(() => {
-          firstBar.style.backgroundColor = "#2196f3";
-          secondBar.style.backgroundColor = "#2196f3";
+          firstBar.style.backgroundColor = "#009688";
+          secondBar.style.backgroundColor = "#009688";
         }, DELAY * 2);
       }, DELAY * index * 2);
+    });
+  };
+
+  const animateMerge = (newArr, selectedIndex) => {
+    selectedIndex.forEach(([newHeight, index], idx) => {
+      const div = document.getElementById(`${index}`);
+      if (!div) return;
+      setTimeout(() => {
+        div.style.backgroundColor = "#ab003c";
+        div.style.height = `${newHeight / 7}%`;
+        setTimeout(() => {
+          div.style.backgroundColor = "#009688";
+        }, DELAY * 2);
+      }, DELAY * idx * 2);
     });
   };
 
   const sortHandler = (sortType) => {
     switch (sortType) {
       case "bubblesort": {
-        const { newArr, selectedIndex } = bubbleSort(dataSet);
-        animateBars(newArr, selectedIndex);
+        const { newArr, animationList } = bubbleSort(dataSet);
+        console.log("[switch case]", animationList);
+        animateBars(newArr, animationList);
         break;
       }
       case "insertionsort": {
-        const { newArr, selectedIndex } = insertionSort(dataSet);
-        animateBars(newArr, selectedIndex);
+        const { newArr, animationList } = insertionSort(dataSet);
+        animateBars(newArr, animationList);
         break;
       }
       case "quicksort": {
-        const { selectedIndex } = quickSort(dataSet, 0, dataSet.length - 1, []);
-        animateBars(dataSet, selectedIndex);
+        const { animationList } = quickSort(dataSet, 0, dataSet.length - 1, []);
+        animateBars(dataSet, animationList);
+      }
+
+      case "mergesort": {
+        const { animationList } = mergeSort(
+          dataSet,
+          0,
+          dataSet.length - 1,
+          [],
+          dataSet.slice()
+        );
+        animateMerge(dataSet, animationList);
       }
     }
   };

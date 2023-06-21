@@ -24,6 +24,12 @@ function Navbar({ sortHandler, generateList }) {
       >
         Quick Sort
       </button>
+      <button
+        className="navButton"
+        onClick={sortHandler.bind(this, "mergesort")}
+      >
+        Merge Sort
+      </button>
     </div>
   );
 }
