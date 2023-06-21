@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react";
 import "./index.style.css";
-import { bubbleSort, insertionSort } from "../helper/sortFunction";
+import { bubbleSort, insertionSort, quickSort } from "../helper/sortFunction";
 import Navbar from "./Navbar";
 function SortingVisualizer() {
   const [dataSet, setDataSet] = useState([]);
 
   const DELAY = 5;
-  const MAX = 100;
+  const MAX = 500;
   const MIN = 10;
 
   useEffect(() => {
     generateList();
   }, []);
 
+  function isArrayEqual(newArr, originalArr) {
+    if (newArr.length !== originalArr.length) return false;
+    for (let i = 0; i < newArr.length; i++) {
+      if (newArr[i] !== originalArr[i]) return false;
+    }
+    return true;
+  }
   const generateRandomNumber = (max, min) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
@@ -58,6 +65,10 @@ function SortingVisualizer() {
         const { newArr, selectedIndex } = insertionSort(dataSet);
         animateBars(newArr, selectedIndex);
         break;
+      }
+      case "quicksort": {
+        const { selectedIndex } = quickSort(dataSet, 0, dataSet.length - 1, []);
+        animateBars(dataSet, selectedIndex);
       }
     }
   };

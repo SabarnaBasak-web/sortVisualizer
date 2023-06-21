@@ -18,6 +18,12 @@ function Navbar({ sortHandler, generateList }) {
       >
         Insertion Sort
       </button>
+      <button
+        className="navButton"
+        onClick={sortHandler.bind(this, "quicksort")}
+      >
+        Quick Sort
+      </button>
     </div>
   );
 }
