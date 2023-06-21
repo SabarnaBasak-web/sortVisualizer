@@ -38,8 +38,6 @@ function SortingVisualizer() {
   };
 
   const animateBars = (newArr, selectedIndex) => {
-    console.log("AnimatedBars", newArr, selectedIndex);
-
     selectedIndex.forEach(([first, second], index) => {
       const firstBar = document.getElementById(first);
       const secondBar = document.getElementById(second);
@@ -76,7 +74,6 @@ function SortingVisualizer() {
     switch (sortType) {
       case "bubblesort": {
         const { newArr, animationList } = bubbleSort(dataSet);
-        console.log("[switch case]", animationList);
         animateBars(newArr, animationList);
         break;
       }

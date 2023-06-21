@@ -23,8 +23,6 @@ function doMerge(arr, low, mid, high, animationArray) {
   }
 }
 export function mergeSort(arr, low, high, animationArray) {
-  console.log("Data", arr, low, high);
-  //   let auxiliaryArray = arr.slice();
   if (low >= high) return;
 
   let mid = parseInt((low + high) / 2);
@@ -33,6 +31,5 @@ export function mergeSort(arr, low, high, animationArray) {
   mergeSort(arr, mid + 1, high, animationArray);
   doMerge(arr, low, mid, high, animationArray);
 
-  console.log("animationList", animationArray);
   return { animationList: animationArray };
 }
