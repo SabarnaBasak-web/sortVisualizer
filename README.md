@@ -8,6 +8,8 @@ This repository contains a sorting visualizer, which is a tool that allows you t
 - Installation
 - Usage
 
+## Demo
+https://sortvisualizer-sb.netlify.app/ 
 ## Installation
 
 - Clone the repo
